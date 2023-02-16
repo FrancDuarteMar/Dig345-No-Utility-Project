@@ -1,0 +1,22 @@
+{
+  "name": "steganography",
+  "version": "1.0.0",
+  "description": "Encrpyting and Decrypting images using steganography",
+  "main": "steganography.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancDuarteMar/Dig345-No-Utility-Project.git"
+  },
+  "keywords": [
+    "steganography"
+  ],
+  "author": "Francisco Duarte M.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrancDuarteMar/Dig345-No-Utility-Project/issues"
+  },
+  "homepage": "https://github.com/FrancDuarteMar/Dig345-No-Utility-Project#readme"
+}
