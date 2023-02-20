@@ -2,7 +2,7 @@
   "name": "steganography",
   "version": "1.0.0",
   "description": "Encrpyting and Decrypting images using steganography",
-  "main": "steganography.js",
+  "main": "steg.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/FrancDuarteMar/Dig345-No-Utility-Project/issues"
   },
-  "homepage": "https://github.com/FrancDuarteMar/Dig345-No-Utility-Project#readme"
+  "homepage": "https://github.com/FrancDuarteMar/Dig345-No-Utility-Project#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "puppeteer": "^19.7.2"
+  }
 }
