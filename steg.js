@@ -3,25 +3,37 @@ const handlers = require("./lib/handlers")
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-var base64Img = require('base64-img');
-const {engine: expressHandlebars} = require('express-handlebars')
+// const steg = require("./lib/steganography")
+const steg = require("./lib/selfSteg")
 
-const upload = multer({dest: "./public/uploads"});
+var base64Img = require('base64-img');
+const {
+    engine: expressHandlebars
+} = require('express-handlebars')
+
+const upload = multer({
+    dest: "./public/uploads"
+});
 const app = express()
 const port = process.env.PORT || 3000
 
-function uploadedFiles(req,res){
-    res.render("home",{img_src: base64Img.base64Sync("./public/uploads/image.png"), img_enc:base64Img.base64Sync("./public/uploads/encrypt.jpg"), prompt:req.body.mytext})
+function uploadedFiles(req, res) {
+    var encImg = steg.encode(req.body.mytext,"./public/uploads/image.png","./public/uploads/encrypt.jpg")
+    // console.log(encImg)
+    res.render("home", {
+        img_src: base64Img.base64Sync("./public/uploads/image.png"),
+        img_enc: encImg,
+        prompt: req.body.mytext
+    })
 }
 
-function finishedUpload(req,res){
-    console.log(req.body.mytext)
+function finishedUpload(req, res) {
+    // console.log(req.body.mytext) 
     {
         const tempPath = req.file.path
         const targetPath = path.join(__dirname, "./public/uploads/image.png")
         console.log("Uploading")
         var extension = path.extname(req.file.originalname).toLowerCase()
-
         if (extension === ".png" || extension === ".jpg" || extension === ".jpeg") {
             fs.rename(tempPath, targetPath, err => {
                 if (err) {
@@ -29,16 +41,8 @@ function finishedUpload(req,res){
                     console.log(err)
                     return handlers.serverError;
                 }
-                
-                
-                  
                 res.status(200)
-                // .redirect(200,"home",{img_src: base64Img.base64Sync("./public/uploads/image.png"), img_enc:base64Img.base64Sync("./public/uploads/encrypt.jpg")})
-                // .contentType("text/plain")
-                // .end("File uploaded!");
-
-                uploadedFiles(req,res)
-                
+                uploadedFiles(req, res)
             });
         } else {
             fs.unlink(tempPath, err => {
@@ -51,7 +55,7 @@ function finishedUpload(req,res){
             });
         }
     }
-    
+
 }
 
 app.use(express.static(__dirname + '/public'))
@@ -62,16 +66,16 @@ app.engine('handlebars', expressHandlebars({
 app.set('view engine', 'handlebars')
 
 try {
-    fs.unlink("./public/uploads/image.png",(err) => err && console.error(err))
-    console.log('successfully deleted /tmp/hello');
-  } catch (error) {
-    console.error('there was an error:', error.message);
-  }
+    fs.unlink("./public/uploads/image.png", (err) => err && console.error(err))
+    console.log('successfully deleted image.png');
+} catch (error) {
+    console.log("Not an error");
+}
 
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
-app.post("/upload",upload.single("file"), finishedUpload);
+app.post("/upload", upload.single("file"), finishedUpload);
 
 //404
 app.use(handlers.notFound)
