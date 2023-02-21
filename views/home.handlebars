@@ -1,28 +1,33 @@
 <h1>Image Steganography</h1>
 
-
-
-
 {{#if img_src}}
-
-    <h3>Prompt: </h3><p>{{prompt}}</p>
-
-
+    <h3>Prompt: </h3>
+        {{#if decoded_text}}
+        <p>{{decoded_text}}</p>
+        {{else}}
+        <p>{{prompt}}</p>
+        {{/if}}
     <img id="unencrypted"src="{{{img_src}}}" alt=""/>
+    <img id="encrypted"src="{{{img_enc}}}" alt=""/>
+
 
 {{else}}
     <form method="post" enctype="multipart/form-data" action="/upload">
-        <input type="text" name="mytext" Required/>
+        <input type="text" name="mytext" Enter Text to Encode/>
 
         <input type="file" name="file">
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Encode">
+        <input type="submit" value="Decode" formaction="/decode">
+
     </form>
 
 {{/if}}
 
-{{#if img_enc}}
+
+
+{{!-- {{#if img_enc}}
     <img id="encrypted"src="{{{img_enc}}}" alt=""/>
-{{/if}}
+{{/if}} --}}
 
 
