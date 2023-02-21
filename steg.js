@@ -4,16 +4,55 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 var base64Img = require('base64-img');
-
-const {
-    engine: expressHandlebars
-} = require('express-handlebars')
-
+const {engine: expressHandlebars} = require('express-handlebars')
 
 const upload = multer({dest: "./public/uploads"});
-
 const app = express()
 const port = process.env.PORT || 3000
+
+function uploadedFiles(req,res){
+    res.render("home",{img_src: base64Img.base64Sync("./public/uploads/image.png"), img_enc:base64Img.base64Sync("./public/uploads/encrypt.jpg"), prompt:req.body.mytext})
+}
+
+function finishedUpload(req,res){
+    console.log(req.body.mytext)
+    {
+        const tempPath = req.file.path
+        const targetPath = path.join(__dirname, "./public/uploads/image.png")
+        console.log("Uploading")
+        var extension = path.extname(req.file.originalname).toLowerCase()
+
+        if (extension === ".png" || extension === ".jpg" || extension === ".jpeg") {
+            fs.rename(tempPath, targetPath, err => {
+                if (err) {
+                    console.log("Error at start of upload. Unknwon error")
+                    console.log(err)
+                    return handlers.serverError;
+                }
+                
+                
+                  
+                res.status(200)
+                // .redirect(200,"home",{img_src: base64Img.base64Sync("./public/uploads/image.png"), img_enc:base64Img.base64Sync("./public/uploads/encrypt.jpg")})
+                // .contentType("text/plain")
+                // .end("File uploaded!");
+
+                uploadedFiles(req,res)
+                
+            });
+        } else {
+            fs.unlink(tempPath, err => {
+                if (err) return handlers.serverError;
+
+                res
+                    .status(403)
+                    .contentType("text/plain")
+                    .end("Only .png files are allowed!");
+            });
+        }
+    }
+    
+}
 
 app.use(express.static(__dirname + '/public'))
 
@@ -32,44 +71,7 @@ try {
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
-app.post("/upload",
-    upload.single("file"),
-    (req, res, next) => {
-        const tempPath = req.file.path
-        const targetPath = path.join(__dirname, "./public/uploads/image.png")
-        console.log("Uploading")
-        var extension = path.extname(req.file.originalname).toLowerCase()
-
-        if (extension === ".png" || extension === ".jpg" || extension === ".jpeg") {
-            fs.rename(tempPath, targetPath, err => {
-                if (err) {
-                    console.log("Error at start of upload. Unknwon error")
-                    console.log(err)
-                    return handlers.serverError;
-                }
-                
-                
-                  
-                res
-                .status(200).render("home",{img_src: base64Img.base64Sync("./public/uploads/image.png"), img_enc:base64Img.base64Sync("./public/uploads/encrypt.jpg")})
-                // .contentType("text/plain")
-                // .end("File uploaded!");
-                // next();
-                
-                
-            });
-        } else {
-            fs.unlink(tempPath, err => {
-                if (err) return handlers.serverError;
-
-                res
-                    .status(403)
-                    .contentType("text/plain")
-                    .end("Only .png files are allowed!");
-            });
-        }
-    }
-);
+app.post("/upload",upload.single("file"), finishedUpload);
 
 //404
 app.use(handlers.notFound)

@@ -1,12 +1,24 @@
 <h1>Image Steganography</h1>
 
-<form method="post" enctype="multipart/form-data" action="/upload">
-    <input type="file" name="file">
-    <input type="submit" value="Submit">
-</form>
+
+
 
 {{#if img_src}}
+
+    <h3>Prompt: </h3><p>{{prompt}}</p>
+
+
     <img id="unencrypted"src="{{{img_src}}}" alt=""/>
+
+{{else}}
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <input type="text" name="mytext" Required/>
+
+        <input type="file" name="file">
+
+        <input type="submit" value="Submit">
+    </form>
+
 {{/if}}
 
 {{#if img_enc}}
