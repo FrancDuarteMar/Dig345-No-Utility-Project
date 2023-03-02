@@ -16,9 +16,10 @@ const upload = multer({
 });
 const app = express()
 const port = process.env.PORT || 3000
+// app.use(express.static('public'))
 
 function uploadedFiles(req, res) {
-    var encImg = steg.encode(req.body.mytext,"./public/uploads/image.png","./public/uploads/encrypt.jpg")
+    var encImg = steg.encode(req.body.mytext, "./public/uploads/image.png", "./public/uploads/encrypt.jpg")
     // console.log(encImg)
     res.render("home", {
         img_src: base64Img.base64Sync("./public/uploads/image.png"),
@@ -58,11 +59,24 @@ function finishedUpload(req, res) {
 
 }
 
+
+// app.engine('handlebars', expressHandlebars({
+//     defaultLayout: 'main',
+// }))
 app.use(express.static(__dirname + '/public'))
 
 app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main',
+    helpers: {
+        section: function (name, options) {
+            if (!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this) 
+            return null
+        },
+    },
 }))
+
+
 app.set('view engine', 'handlebars')
 
 try {
