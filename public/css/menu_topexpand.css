@@ -1,15 +1,13 @@
 html,
 body,
-.container,
-.content-wrap {
+/* .container, */
+/* .content-wrap {
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
-}
+} */
 
-.container {
-	background: #fffce1;
-}
+
 
 .menu-wrap a {
 	color: #FFFFFF;
@@ -41,7 +39,7 @@ body,
 	position: fixed;
 	width: 2.5em;
 	height: 2.25em;
-	font-size: 1.5em;
+	/* font-size: 1.5em; */
 	-webkit-transform: translate3d(1.5em, 1.5em, 0);
 	transform: translate3d(1.5em, 1.5em, 0);
 }
@@ -55,6 +53,8 @@ body,
 	text-indent: 2.5em;
 	color: transparent;
 	background: #CC226F;
+	/* padding-bottom: 50em; */
+	margin-bottom: 5em;
 }
 
 .menu-button::before {
@@ -84,7 +84,7 @@ body,
 .menu {
 	height: 100%;
 	overflow: hidden;
-	font-size: 0.75em;
+	/* font-size: 0.75em; */
 }
 
 .icon-list {
@@ -98,14 +98,14 @@ body,
 	padding: 0 0.2em;
 	margin: 0 15px;
 	text-align: center;
-	font-size: 1.2em;
+	/* font-size: 1.2em; */
 }
 
 .icon-list a span {
 	display: block;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size: 0.5em;
+	/* font-size: 0.5em; */
 	font-weight: 700;
 	padding-top: 0.5em;
 }
@@ -114,12 +114,10 @@ body,
 	.icon-list a {
 		padding: 0.5em 0em;
 		margin: 0 5px;
-		font-size: 1em;
+		/* font-size: 1em; */
 	}
 
-	.icon-list a span {
-		display: none;
-	}
+
 }
 
 /* Shown menu */

@@ -10,17 +10,17 @@ main,
 nav,
 section,
 summary {
-    display: block;
+    /* display: block; */
 }
 
 audio,
 canvas,
 video {
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 audio:not([controls]) {
-    display: none;
+    /* display: none; */
     height: 0;
 }
 
@@ -34,9 +34,9 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-body {
+/* body {
     margin: 0;
-}
+} */
 
 a:focus {
     outline: thin dotted;
@@ -47,10 +47,7 @@ a:hover {
     outline: 0;
 }
 
-h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-}
+
 
 abbr[title] {
     border-bottom: 1px dotted;

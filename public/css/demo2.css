@@ -32,7 +32,7 @@ body {
 	background: #353535;
 	color: #fffce1;
 	font-weight: 400;
-	font-size: 1em;
+	/* font-size: 1em; */
 	font-family: 'Raleway', Arial, sans-serif;
 }
 
@@ -67,13 +67,13 @@ section {
 .codrops-header h1 {
 	margin: 0 auto;
 	font-weight: 800;
-	font-size: 3.75em;
+	/* font-size: 3.75em; */
 	line-height: 1;
 }
 
 .codrops-header h1 span {
 	display: block;
-	font-size: 50%;
+	/* font-size: 50%; */
 	font-weight: 400;
 	padding-top: 0.325em;
 }
@@ -81,7 +81,7 @@ section {
 .codrops-links {
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 0.69em;
+	/* font-size: 0.69em; */
 	line-height: 2.2;
 	padding: 1.61em 5em;
 }
@@ -115,7 +115,7 @@ section {
 
 /* Demo Buttons Style */
 .codrops-demos {
-	font-size: 1em;
+	/* font-size: 1em; */
 	max-width: 1200px;
 	margin: 3em auto 5em;
 	padding: 2em 10em 0;
@@ -147,7 +147,7 @@ section {
 }
 
 .related p {
-	font-size: 1.5em;
+	/* font-size: 1.5em; */
 	font-weight: 700;
 }
 
@@ -181,11 +181,11 @@ section {
 
 @media screen and (max-width: 40em) {
 	body {
-		font-size: 80%;
+		/* font-size: 80%; */
 	}
 
 	.codrops-header h1 {
-		font-size: 2.5em;
+		/* font-size: 2.5em; */
 	}
 
 	.codrops-demos {
@@ -201,7 +201,7 @@ section {
 @media screen and (max-width: 25em) {
 
 	.codrops-icon {
-		font-size: 250%;
+		/* font-size: 250%; */
 	}
 
 	.codrops-icon span {
