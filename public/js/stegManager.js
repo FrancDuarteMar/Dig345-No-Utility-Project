@@ -61,7 +61,7 @@ $('#submitButton').click(function (e) {
         let test = stega.encode($(".inputArea").val(), imageUrl)
         $("#encrypted").attr("src",test)
         $("#encryptedDownload").css("visibility","visible")
-        $("#downloadLink").attr("href",imageUrl)
+        $("#downloadLink").attr("href",test)
     } 
     else{
         let message = stega.decode(imageUrl)
