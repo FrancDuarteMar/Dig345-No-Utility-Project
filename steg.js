@@ -150,14 +150,11 @@ try {
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
-app.get('/decode',handlers.decode)
-app.get('/test',handlers.steg)
+app.get('/steganography',handlers.steganography)
 app.post('/upload', upload.single('file'), function (req, res){
     encodeUpload(req,res)
   });
-app.post("/upload", upload.single("file"), encodeUpload)
-app.post("/decode", upload.single("file"), decodeUpload)
-app.post("/uploadTest",upload.single("file"),testEncodeUpload)
+// app.post("/upload", upload.single("file"), encodeUpload)
 
 
 //404
