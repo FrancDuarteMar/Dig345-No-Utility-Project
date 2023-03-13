@@ -3,10 +3,7 @@ const handlers = require("./lib/handlers")
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-// const steg = require("./lib/steganography")
-// const steg = require("./lib/selfSteg")
-const steg = require("./lib/greenSteg")
-const st = require("./lib/st")
+
 
 var base64Img = require('base64-img');
 const {
