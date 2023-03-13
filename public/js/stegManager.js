@@ -38,23 +38,30 @@ function drop() {
 
 $('input:radio[name="encDec"]').change(
     function(){
+        // Decrypt Text
         if ($(this).val() == 'decrypt'){
             $(".inputArea").prop("disabled",true);
             $("#submitButton").attr('formaction', "/decode")
         } 
+        
+        // Encrypt Text into the image 
         else{
             $(".inputArea").prop("disabled",false);
             $("#submitButton").attr('formaction', "/upload")
             $("#promptText").html("Text to Encode:")
+
         }
     });
 
 $('#submitButton').click(function (e) { 
     e.preventDefault();
     console.log($("#encBubble").is(":checked"))
+    // Encrypt Text to image
     if ($("#encBubble").is(":checked")){
         let test = stega.encode($(".inputArea").val(), imageUrl)
         $("#encrypted").attr("src",test)
+        $("#encryptedDownload").css("visibility","visible")
+        $("#downloadLink").attr("href",imageUrl)
     } 
     else{
         let message = stega.decode(imageUrl)

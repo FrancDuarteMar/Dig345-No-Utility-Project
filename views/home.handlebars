@@ -44,24 +44,12 @@
 
 <img id="encrypted" src="" style="width: 100%;" alt="" />
 
-{{!-- {{#if img_src}}
-            <h3>Prompt: </h3>
-            {{#if decoded_text}}
-            <p>{{decoded_text}}</p>
-            {{else}}
-            <p>{{prompt}}</p>
-            {{/if}}
-            <img id="unencrypted" src="{{{img_src}}}" alt="" />
-            <img id="encrypted" src="{{{img_enc}}}" alt="" />
-            {{else}}
-            <form method="post" enctype="multipart/form-data" action="/upload">
-                <input type="text" name="mytext" Enter Text to Encode />
-                <input type="file" name="file">
-                <input type="radio" value="Encode" value = "Encode"> <label for="Encode">Encode</label><br>
-                <input type="radio" value="Decode" formaction="/decode">
-                <label for="html">Decode</label><br>
-            </form>
-            {{/if}} --}}
+<button class="btn" id="encryptedDownload">
+    <a id="downloadLink" class="fa fa-download" href="javascript:void(0)"
+        download="encypted">Download Encrypted Image</a>
+</button>
+
+
 <script src="js/steganography.js"></script>
 
 <script src="js/stegManager.js"></script>
