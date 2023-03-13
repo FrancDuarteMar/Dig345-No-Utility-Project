@@ -16,7 +16,7 @@
     context[name] = factory();
   }
 
-})("steg", this, function () {
+})("stega", this, function () {
 var Cover = function Cover() {};
 var util = {
   "isPrime" : function(n) {

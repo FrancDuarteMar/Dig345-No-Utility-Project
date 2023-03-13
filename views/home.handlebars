@@ -4,40 +4,34 @@
 
     <div class="row">
         <div class="col-md-6">
-            {{#if text_decrypted}}
-                <h4>
-                    Decrypted Text: 
-                </h4>
-            {{else}}
-                <h4 >
+                <h4 id="promptText">
                     Text to Encode:
                 </h4>
-            {{/if}}
         </div>
     </div>
     <div class="row">
         <div class="col-md-8">
-            <form method="post" enctype="multipart/form-data" action="/upload">
+            {{!-- <form method="post" enctype="multipart/form-data" action="/upload"> --}}
+            <form method="post" enctype="multipart/form-data">
+
                 {{!-- <input type="text" name="mytext" style="width: 100%; height:6rem" Enter Text to Encode /> --}}
-                {{#if text_decrypted}}
-                <textarea class = "inputArea" type="text" name="mytext" style="width: 100%; height:7rem" placeholder ="{{text_decrypted}}" disabled></textarea>
-                {{else}}
-                    <textarea class = "inputArea" type="text" name="mytext" style="width: 100%; height:7rem" placeholder ="Enter text to be encrypted " ></textarea>
-                {{/if}}
+
+                    <textarea id="textFormArea"class = "inputArea" type="text" name="mytext" style="width: 100%; height:7rem" placeholder ="Enter text to be encrypted " ></textarea>
 
             
 
         </div>
         <div class="col-md-4">
-            <form id="radioForm">
+            <form id="radioForm" onsubmit="return encode()">
                 <input type="radio" id="encBubble" name="encDec"
                     value="encrypt" checked>
                 <label for="encBubble">Encrypt</label><br>
                 <input type="radio" id="decBubble" name="encDec"
                     value="decrypt">
                 <label for="css">Decrypt</label><br>
+                <input id = "submitButton" type="button" value = "Submit">
 
-                <input id = "submitButton" type="submit" value = "Submit" formaction = "/upload">
+                {{!-- <input id = "submitButton" type="submit" value = "Submit" formaction = "/upload"> --}}
             </form>
         </div>
 
@@ -54,14 +48,16 @@
         <br>
 
             <div id="preview"></div>
-
+            {{!-- <canvas id="preview"></canvas> --}}
+            <canvas id="imageCanvas"></canvas>
+            <canvas id="textCanvas"></canvas>
             {{/if}}
 
         </div>
     </div>
 </div>
 
-                <img id="encrypted" src="/uploads/enc.png" alt="" />
+                <img id="encrypted" src="" style="width: 100%;" alt="" />
 
 {{!-- {{#if img_src}}
             <h3>Prompt: </h3>
@@ -81,6 +77,7 @@
                 <label for="html">Decode</label><br>
             </form>
             {{/if}} --}}
+<script src="js/steganography.js"></script>
 
 <script src="js/fileDrop.js"></script>
 
