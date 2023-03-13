@@ -136,32 +136,32 @@ button,
 input,
 select,
 textarea {
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0;
+    font-family: inherit!important;
+    font-size: 100%!important;
+    margin: 0!important;
 }
 
 button,
 input {
-    line-height: normal;
+    line-height: normal !important
 }
 
 button,
 select {
-    text-transform: none;
+    text-transform: none !important
 }
 
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button;
-    cursor: pointer;
+    -webkit-appearance: button!important;
+    cursor: pointer!important;
 }
 
 button[disabled],
 html input[disabled] {
-    cursor: default;
+    cursor: default!important;
 }
 
 input[type="checkbox"],
@@ -184,8 +184,8 @@ input[type="search"]::-webkit-search-decoration {
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+    border: 0!important;
+    padding: 0!important;
 }
 
 textarea {

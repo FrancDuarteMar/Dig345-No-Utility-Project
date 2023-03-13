@@ -1,12 +1,66 @@
-    <div class="row">
-        <div class="col-4">
-            <h1>Image Steganography</h1>
-        </div>
-    </div>
+<link rel="stylesheet" type="text/css" href="css/home.css" />
+<div class="container">
+
 
     <div class="row">
-        <div class="col-11 offset-1">
+        <div class="col-md-6">
+            {{#if text_decrypted}}
+                <h4>
+                    Decrypted Text: 
+                </h4>
+            {{else}}
+                <h4 >
+                    Text to Encode:
+                </h4>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                {{!-- <input type="text" name="mytext" style="width: 100%; height:6rem" Enter Text to Encode /> --}}
+                {{#if text_decrypted}}
+                <textarea class = "inputArea" type="text" name="mytext" style="width: 100%; height:7rem" placeholder ="{{text_decrypted}}" disabled></textarea>
+                {{else}}
+                    <textarea class = "inputArea" type="text" name="mytext" style="width: 100%; height:7rem" placeholder ="Enter text to be encrypted " ></textarea>
+                {{/if}}
+
+            
+
+        </div>
+        <div class="col-md-4">
+            <form id="radioForm">
+                <input type="radio" id="encBubble" name="encDec"
+                    value="encrypt" checked>
+                <label for="encBubble">Encrypt</label><br>
+                <input type="radio" id="decBubble" name="encDec"
+                    value="decrypt">
+                <label for="css">Decrypt</label><br>
+                <input id = "submitButton" type="submit" value = "Submit" formaction = "/upload">
+            </form>
+        </div>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
             {{#if img_src}}
+                <img id="unencrypted" src="{{{img_src}}}" alt="" />
+
+            {{else}}
+            <input type="file" onChange="dragNdrop(event)"  ondragover="drag()" ondrop="drop()" id="uploadImage"  />
+        <br>
+
+            <div id="preview"></div>
+
+            {{/if}}
+
+        </div>
+    </div>
+</div>
+
+
+{{!-- {{#if img_src}}
             <h3>Prompt: </h3>
             {{#if decoded_text}}
             <p>{{decoded_text}}</p>
@@ -19,10 +73,12 @@
             <form method="post" enctype="multipart/form-data" action="/upload">
                 <input type="text" name="mytext" Enter Text to Encode />
                 <input type="file" name="file">
-                <input type="submit" value="Encode">
-                <input type="submit" value="Decode" formaction="/decode">
+                <input type="radio" value="Encode" value = "Encode"> <label for="Encode">Encode</label><br>
+                <input type="radio" value="Decode" formaction="/decode">
+                <label for="html">Decode</label><br>
             </form>
-            {{/if}}
-        </div>
+            {{/if}} --}}
 
-    </div>
+<script src="js/fileDrop.js"></script>
+
+</div>

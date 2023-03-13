@@ -19,7 +19,7 @@ body,
 }
 
 .content-wrap {
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	-webkit-overflow-scrolling: touch;
 	-webkit-transition: -webkit-transform 0.4s;
 	transition: transform 0.4s;
@@ -74,7 +74,7 @@ body,
 /* Menu */
 .menu-wrap {
 	z-index: 999;
-	background: #8a92b3;
+	background: #b38a8a;
 	-webkit-transition: width 0.4s, height 0.4s, -webkit-transform 0.4s;
 	transition: width 0.4s, height 0.4s, transform 0.4s;
 	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
