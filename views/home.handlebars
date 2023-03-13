@@ -36,6 +36,7 @@
                 <input type="radio" id="decBubble" name="encDec"
                     value="decrypt">
                 <label for="css">Decrypt</label><br>
+
                 <input id = "submitButton" type="submit" value = "Submit" formaction = "/upload">
             </form>
         </div>
@@ -46,9 +47,10 @@
         <div class="col-12">
             {{#if img_src}}
                 <img id="unencrypted" src="{{{img_src}}}" alt="" />
+                <img id="encrypted" src="{{{img_enc}}}" alt="" />
 
             {{else}}
-            <input type="file" onChange="dragNdrop(event)"  ondragover="drag()" ondrop="drop()" id="uploadImage"  />
+            <input type="file" name="file" id = "uploadSubmit" onChange="dragNdrop(event)"  ondragover="drag()" ondrop="drop()"/>
         <br>
 
             <div id="preview"></div>
@@ -59,6 +61,7 @@
     </div>
 </div>
 
+                <img id="encrypted" src="/uploads/enc.png" alt="" />
 
 {{!-- {{#if img_src}}
             <h3>Prompt: </h3>

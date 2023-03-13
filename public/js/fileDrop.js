@@ -1,14 +1,33 @@
 "use strict";
+function uploadImage(blobFile, text) {
+    //  Uploading image, this does all the magic!, the file variable can also be a blob file
+    let form = new FormData(),
+        // file = document.getElementById("fileInput").files[0],
+        file = blobFile,
+        
+        request = new XMLHttpRequest();
+    form.append("file", file, "file");
+    form.append("textToEncode",text)
+    request.open("POST", "/upload");
+    request.send(form);
+}
+
+var imageBlob; 
+
 function dragNdrop(event) {
     var fileName = URL.createObjectURL(event.target.files[0]);
     var preview = document.getElementById("preview");
     var previewImg = document.createElement("img");
     previewImg.setAttribute("src", fileName);
     previewImg.setAttribute("width", "100%");
-
+    previewImg.id = "image"
     preview.innerHTML = "";
     preview.appendChild(previewImg);
-    $("#uploadImage").hide()
+    $("#uploadSubmit").hide()
+    console.log(fileName)
+    imageBlob = event.target.files[0]
+    
+
 }
 function drag() {
     document.getElementById('uploadFile').parentNode.className = 'draging dragBox';
@@ -28,10 +47,15 @@ $('input:radio[name="encDec"]').change(
             $("#submitButton").attr('formaction', "/upload")
 
         }
-        
-        console.log("Changed")
+        console.log(imageBlob)
+        // console.log($(".inputArea").val())
     });
 
+    
+$('#submitButton').click(function (e) { 
+    e.preventDefault();
+    uploadImage(imageBlob, $(".inputArea").val())
+});
 // $('#radioForm input').on("change",function(){
 //     console.log("Change in radio form ")
 //     // var radioValue = $("input[name='gender']:checked").val();

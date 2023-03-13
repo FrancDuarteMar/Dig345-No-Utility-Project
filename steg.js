@@ -14,49 +14,54 @@ const {
 const upload = multer({
     dest: "./public/uploads"
 });
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null,__dirname+'./public/uploads')
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, uuidv4() + "image"+`.png`) //Appending extension
+//     }
+//   });
+
+// const upload = multer({ storage: storage });
+
 const app = express()
 const port = process.env.PORT || 3000
-// app.use(express.static('public'))
 
 function uploadedFiles(req, res) {
-    var encImg = steg.encode(req.body.mytext, "./public/uploads/image.png", "./public/uploads/encrypt.jpg")
-    // console.log(encImg)
+    var encImg = steg.encode(req.body.textToEncode, "./public/uploads/image.png", "./public/uploads/encrypt.jpg")
+    console.log(encImg)
+    fs.writeFile('./public/uploads/enc.png', encImg, 'base64', function(err){
+        if (err) throw err
+        console.log('File saved.')
+    })
     res.render("home", {
         img_src: base64Img.base64Sync("./public/uploads/image.png"),
         img_enc: encImg,
-        prompt: req.body.mytext
+        prompt: req.body.textToEncode
     })
+    res.status(200)
+
 }
 
 function finishedUpload(req, res) {
-    // console.log(req.body.mytext) 
+    console.log(req.body.textToEncode)
+    // console.log(req.body.myatext) 
+    console.log("Uploaded file")
     {
         const tempPath = req.file.path
+        console.log("TEMP PATH: "+tempPath)
         const targetPath = path.join(__dirname, "./public/uploads/image.png")
         console.log("Uploading")
-        var extension = path.extname(req.file.originalname).toLowerCase()
-        if (extension === ".png" || extension === ".jpg" || extension === ".jpeg") {
-            fs.rename(tempPath, targetPath, err => {
-                if (err) {
-                    console.log("Error at start of upload. Unknwon error")
-                    console.log(err)
-                    return handlers.serverError;
-                }
-                res.status(200)
-                uploadedFiles(req, res)
-            });
-        } else {
-            fs.unlink(tempPath, err => {
-                if (err) return handlers.serverError;
-
-                res
-                    .status(403)
-                    .contentType("text/plain")
-                    .end("Only .png files are allowed!");
-            });
-        }
+        fs.rename(tempPath, targetPath, err => {
+            if (err) {
+                console.log("Error at start of upload. Unknwon error")
+                console.log(err)
+                return handlers.serverError;
+            }               
+            uploadedFiles(req, res)
+        });
     }
-
 }
 
 
@@ -64,17 +69,6 @@ app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main',
 }))
 app.use(express.static(__dirname + '/public'))
-
-// app.engine('handlebars', expressHandlebars({
-//     defaultLayout: 'main',
-//     helpers: {
-//         section: function (name, options) {
-//             if (!this._sections) this._sections = {}
-//             this._sections[name] = options.fn(this) 
-//             return null
-//         },
-//     },
-// }))
 
 
 app.set('view engine', 'handlebars')
@@ -89,17 +83,18 @@ try {
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
-app.post("/upload", upload.single("file"), finishedUpload);
+// app.post("/upload", upload.single("file"), finishedUpload);
+app.post('/upload', upload.single('file'), function (req, res){
+    // req.file contains info about file.
+    console.log(req.file);
+    // res.json(req.file);
+    finishedUpload(req,res)
+  });
 
 //404
 app.use(handlers.notFound)
 // 500
 app.use(handlers.serverError)
-
-
-// app.listen(port, () => console.log(
-//     `Express started on http://localhost:${port}; ` +
-//     `press Ctrl-C to terminate.`))
 
 if (require.main === module) {
     app.listen(port, () => {
