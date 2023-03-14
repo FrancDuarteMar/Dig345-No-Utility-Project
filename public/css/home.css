@@ -24,8 +24,23 @@ h4{
     border: none;
     display: inline-block;
   }
+  #downloadLink{
+    text-decoration: none;
+    color:#000000;
+    font-size: 1.1rem;
+    font-weight: 500;
 
-#encryptedDownload,#secondImageTitle,#firstImageTitle{
+  }
+  #encryptedDownload{
+    float: right;
+    background-color: #f5c42f;
+    color:#000000;
+    height: 3rem;
+    visibility: hidden;
+
+
+  }
+#secondImageTitle,#firstImageTitle{
     visibility: hidden;
 }
 #preview{
