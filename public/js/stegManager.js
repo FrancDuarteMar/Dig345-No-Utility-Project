@@ -41,12 +41,13 @@ $('input:radio[name="encDec"]').change(
     function(){
         // Decrypt Text bubble
         if ($(this).val() == 'decrypt'){
-            $(".inputArea").prop("disabled",true);
+            // $(".inputArea").prop("disabled",true);
+            $(".inputArea").prop("readonly",true);
             $("#submitButton").attr('formaction', "/decode")
             $("#promptText").html("Decoded Text:")
         } 
         
-        // Encrypt Text bubblge
+        // Encrypt Text bubble
         else{
             $(".inputArea").prop("disabled",false);
             $("#submitButton").attr('formaction', "/upload")
@@ -69,6 +70,8 @@ $('#submitButton').click(function (e) {
     } 
     else{
         let message = stega.decode(imageUrl)
+        // $(".inputArea").prop("disabled",false);
+        // $(".inputArea").prop("readonly",true);
         $("#textFormArea").attr("placeholder",message)
         $("#promptText").html("Decoded Text: ")
 
@@ -76,3 +79,27 @@ $('#submitButton').click(function (e) {
 
 });
 
+$(window).on('resize', function() {
+    if($(window).width() < 576) {
+        $(".radio-div").addClass("form-check-inline")
+        // $(".main-radio-div").removeClass("col-sm-")
+
+    }
+    else{
+        $(".radio-div").removeClass("form-check-inline")
+
+    }
+}
+)
+
+$(document).ready(function () {
+    if($(window).width() < 576) {
+        $(".radio-div").addClass("form-check-inline")
+        // $(".main-radio-div").removeClass("col-sm-")
+
+    }
+    else{
+        $(".radio-div").removeClass("form-check-inline")
+
+    }
+});

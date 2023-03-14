@@ -6,6 +6,17 @@ h4{
     font-size: 1.9rem;
 }
 
+/* #textFormArea{
+
+} */
+/* .radio { 
+    display: inline;
+ } */
+
+ input[type=radio] {
+    display: inline;
+  }
+  
 .dragText{
     margin: 0;
     position: absolute;
