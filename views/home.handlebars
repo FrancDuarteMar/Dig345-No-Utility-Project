@@ -9,34 +9,35 @@
     </div>
     <div class="row">
         {{!-- Used to be 8 --}}
-        <div class="col-md-10"> 
-        {{!-- <div class="col-md-8">  --}}
+        <div class="col-md-10">
+            {{!-- <div class="col-md-8">  --}}
 
             <form method="post" enctype="multipart/form-data">
-                <textarea id="textFormArea" class="inputArea" type="text"
-                    name="mytext" style="width: 100%; height:7rem"
+                <textarea id="textFormArea" class="inputArea" name="mytext"
+                    style="width: 100%; height:7rem"
                     placeholder="Enter text to be encrypted "></textarea>
+            </form>
         </div>
         {{!-- Used to be 4 --}}
         <div class="col-md-2">
-        {{!-- <div class="col-md-4"> --}}
+            {{!-- <div class="col-md-4"> --}}
             <form id="radioForm" onsubmit="return encode()">
                 <input type="radio" id="encBubble" name="encDec" value="encrypt"
                     checked>
                 <label for="encBubble">Encrypt</label><br>
                 <input type="radio" id="decBubble" name="encDec"
                     value="decrypt">
-                <label for="css">Decrypt</label><br>
-                <input id="submitButton" type="button" value="Submit" style = "font-size:207px">
+                <label for="decBubble">Decrypt</label><br>
+                <input id="submitButton" type="button" value="Submit"
+                    style="font-size:207px">
             </form>
         </div>
-
     </div>
     <br>
     <div class="row">
         <div class="col-md-12 uploadContainer">
             <span class="dragBox">
-                <p class="dragText">Click or Drag Image to Upload</p>
+                <span class="dragText">Click or Drag Image to Upload</span>
                 <input class="btn btn-primary" type="file" name="file"
                     id="uploadSubmit" onChange="dragNdrop(event)"
                     ondragover="drag()" ondrop="drop()" />
