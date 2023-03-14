@@ -40,9 +40,10 @@ body,
 	color: transparent;
 	background: #F5C42F;
 	/* padding-bottom: 50em; */
-	margin-bottom: 5em;
+	margin-bottom: 0;
 }
 
+/* Dashes */
 .menu-button::before {
 	position: absolute;
 	top: 0.5em;
@@ -69,13 +70,14 @@ body,
 
 .menu {
 	height: 100%;
+	/* height:50%; */
 	overflow: hidden;
 	/* font-size: 0.75em; */
 }
 
 .icon-list {
 	float: right;
-	padding: 2.5em 2em 0 6em;
+	padding: 1.5em 2em 0 6em;
 }
 
 .icon-list a {
@@ -116,7 +118,8 @@ body,
 
 .show-menu .menu-wrap {
 	width: 100%;
-	height: 125px;
+	height: 90px;
+	/* height: 125px; */
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition-delay: 0s;
