@@ -4,8 +4,10 @@
 body{
     background: #353535;
 }
-h1{
+h1,.Title{
     font-size: 3rem;
     color: #F5C42F;
 }
-
+.Title:hover{
+    color:#F5C42F;
+}

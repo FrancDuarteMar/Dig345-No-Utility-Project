@@ -15,23 +15,14 @@ h4{
     font-size: 1.2rem;
 }
 .dragBox {
-    text-align: center;
     width:100%;
     height: 60vh;
-    /* width: 250px; */
-    /* height: 100px; */
-    margin: 0 auto;
     position: relative;
-    text-align: center;
-    font-weight: bold;
-    line-height: 95px;
+    font-weight:700;
     background-color: #c08cff;
-    /* color: #c08cff; */
-    color:white;
+    color:#ffffff;
     border: none;
     display: inline-block;
-    transition: transform 0.3s;
-
   }
 
 #encryptedDownload,#secondImageTitle,#firstImageTitle{
