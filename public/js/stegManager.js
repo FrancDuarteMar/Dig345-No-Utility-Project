@@ -24,9 +24,10 @@ function dragNdrop(event) {
     previewImg.id = "image"
     preview.innerHTML = "";
     preview.appendChild(previewImg);
-    $("#uploadSubmit").hide()
+    $(".uploadContainer").css("display","none")
     imageBlob = event.target.files[0]   
     imageUrl = fileName 
+    $("#firstImageTitle").css("visibility","visible")
 }
 function drag() {
     document.getElementById('uploadFile').parentNode.className = 'draging dragBox';
@@ -38,13 +39,14 @@ function drop() {
 
 $('input:radio[name="encDec"]').change(
     function(){
-        // Decrypt Text
+        // Decrypt Text bubble
         if ($(this).val() == 'decrypt'){
             $(".inputArea").prop("disabled",true);
             $("#submitButton").attr('formaction', "/decode")
+            $("#promptText").html("Decoded Text:")
         } 
         
-        // Encrypt Text into the image 
+        // Encrypt Text bubblge
         else{
             $(".inputArea").prop("disabled",false);
             $("#submitButton").attr('formaction', "/upload")
@@ -59,14 +61,18 @@ $('#submitButton').click(function (e) {
     // Encrypt Text to image
     if ($("#encBubble").is(":checked")){
         let test = stega.encode($(".inputArea").val(), imageUrl)
-        $("#encrypted").attr("src",test)
+        $("#encryptedImage").attr("src",test)
         $("#encryptedDownload").css("visibility","visible")
         $("#downloadLink").attr("href",test)
+        $("#secondImageTitle").css("visibility","visible")
+
     } 
     else{
         let message = stega.decode(imageUrl)
         $("#textFormArea").attr("placeholder",message)
         $("#promptText").html("Decoded Text: ")
+
     }    
 
 });
+

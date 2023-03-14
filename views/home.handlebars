@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h4 id="promptText">
+            <h4 class="main-text" id="promptText">
                 Text to Encode:
             </h4>
         </div>
@@ -29,29 +29,52 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-12">
-            <input type="file" name="file" id="uploadSubmit"
-                onChange="dragNdrop(event)" ondragover="drag()"
-                ondrop="drop()" />
-            <br>
-            <div id="preview"></div>
-            <canvas id="imageCanvas"></canvas>
-            <canvas id="textCanvas"></canvas>
+        <div class="col-md-12 uploadContainer">
+            <span class="dragBox">
+                <p class="dragText">Click or Drag Image to Upload</p>
+                <input class="btn btn-primary" type="file" name="file"
+                    id="uploadSubmit" onChange="dragNdrop(event)"
+                    ondragover="drag()" ondrop="drop()" />
+            </span>
 
         </div>
     </div>
-</div>
 
-<img id="encrypted" src="" style="width: 100%;" alt="" />
+    <div class="row">
+        <div class="col-md-6">
+            <h4 id="firstImageTitle">Uploaded Image:</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="preview"></div>
+        </div>
+    </div>
 
-<button class="btn" id="encryptedDownload">
-    <a id="downloadLink" class="fa fa-download" href="javascript:void(0)"
-        download="TotallyNotAnEncryptedFile.png">Download Encrypted Image</a>
-</button>
+    <br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 id="secondImageTitle">Encrypted Image:</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <img id="encryptedImage" src="" style="width: 100%;" alt="" />
+        </div>
+    </div>
 
 
-<script src="js/steganography.js"></script>
+    <button class="btn" id="encryptedDownload">
+        <a id="downloadLink" class="fa fa-download" href="javascript:void(0)"
+            download="TotallyNotAnEncryptedFile.png">Download Encrypted
+            Image</a>
+    </button>
 
-<script src="js/stegManager.js"></script>
+
+    <script src="js/steganography.js"></script>
+
+    <script src="js/stegManager.js"></script>
 
 </div>

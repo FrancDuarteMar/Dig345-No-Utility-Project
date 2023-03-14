@@ -6,6 +6,52 @@ h4{
     font-size: 1.9rem;
 }
 
+.dragText{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+}
+.dragBox {
+    text-align: center;
+    width:100%;
+    height: 60vh;
+    /* width: 250px; */
+    /* height: 100px; */
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    line-height: 95px;
+    background-color: #c08cff;
+    /* color: #c08cff; */
+    color:white;
+    border: none;
+    display: inline-block;
+    transition: transform 0.3s;
+
+  }
+
+#encryptedDownload,#secondImageTitle,#firstImageTitle{
+    visibility: hidden;
+}
+#preview{
+    width: 100%
+}
+
+#uploadSubmit{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    overflow: visible;
+    background: #cc226f;
+}
+
 .box {
     font-size: 1.25rem;
     /* 20 */
