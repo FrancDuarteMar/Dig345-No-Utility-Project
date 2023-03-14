@@ -2,6 +2,8 @@ html,
 body,
 .menu-wrap a {
 	color: #FFFFFF;
+	font-family: 'Source Code Pro', monospace!important;
+	font-family: 'Space Mono', monospace!important;
 }
 
 .menu-wrap a:hover,
