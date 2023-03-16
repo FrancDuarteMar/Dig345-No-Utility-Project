@@ -44,7 +44,7 @@ $('input:radio[name="encDec"]').change(
             $(".inputArea").prop("disabled",true);
             // $(".inputArea").prop("readonly",true);
             $("#submitButton").attr('formaction', "/decode")
-            $("#promptText").html("Decoded Text:")
+            $("#promptText").html("Decoding...")
         } 
         
         // Encrypt Text bubble
@@ -52,7 +52,7 @@ $('input:radio[name="encDec"]').change(
             $(".inputArea").prop("disabled",false);
             // $(".inputArea").prop("readonly",false);
             $("#submitButton").attr('formaction', "/upload")
-            $("#promptText").html("Text to Encode:")
+            $("#promptText").html("Text to Encode")
 
         }
     });
@@ -78,7 +78,7 @@ $('#submitButton').click(function (e) {
         $(".inputArea").prop("readonly",true);
         // $("#textFormArea").attr("placeholder",message)
         $(".inputArea").val(message) 
-        $("#promptText").html("Decoded Text: ")
+        $("#promptText").html("Decoded Text ")
 
     }    
 
