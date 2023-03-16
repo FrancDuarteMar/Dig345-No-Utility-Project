@@ -6,9 +6,9 @@ h4{
     font-size: 1.9rem;
 }
 
-/* #textFormArea{
-
-} */
+#textFormArea{
+    overflow-y: scroll
+}
 /* .radio { 
     display: inline;
  } */

@@ -41,8 +41,8 @@ $('input:radio[name="encDec"]').change(
     function(){
         // Decrypt Text bubble
         if ($(this).val() == 'decrypt'){
-            // $(".inputArea").prop("disabled",true);
-            $(".inputArea").prop("readonly",true);
+            $(".inputArea").prop("disabled",true);
+            // $(".inputArea").prop("readonly",true);
             $("#submitButton").attr('formaction', "/decode")
             $("#promptText").html("Decoded Text:")
         } 
@@ -50,6 +50,7 @@ $('input:radio[name="encDec"]').change(
         // Encrypt Text bubble
         else{
             $(".inputArea").prop("disabled",false);
+            // $(".inputArea").prop("readonly",false);
             $("#submitButton").attr('formaction', "/upload")
             $("#promptText").html("Text to Encode:")
 
@@ -61,6 +62,9 @@ $('#submitButton').click(function (e) {
     console.log($("#encBubble").is(":checked"))
     // Encrypt Text to image
     if ($("#encBubble").is(":checked")){
+        $(".inputArea").prop("disabled",false);
+        $(".inputArea").prop("readonly",true);
+
         let test = stega.encode($(".inputArea").val(), imageUrl)
         $("#encryptedImage").attr("src",test)
         $("#encryptedDownload").css("visibility","visible")
@@ -70,9 +74,10 @@ $('#submitButton').click(function (e) {
     } 
     else{
         let message = stega.decode(imageUrl)
-        // $(".inputArea").prop("disabled",false);
-        // $(".inputArea").prop("readonly",true);
-        $("#textFormArea").attr("placeholder",message)
+        $(".inputArea").prop("disabled",false);
+        $(".inputArea").prop("readonly",true);
+        // $("#textFormArea").attr("placeholder",message)
+        $(".inputArea").val(message) 
         $("#promptText").html("Decoded Text: ")
 
     }    
