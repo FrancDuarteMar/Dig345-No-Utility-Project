@@ -45,12 +45,16 @@ $('input:radio[name="encDec"]').change(
             // $(".inputArea").prop("readonly",true);
             $("#submitButton").attr('formaction', "/decode")
             $("#promptText").html("Decoding...")
+            $("#textFormArea").attr("placeholder"," ")
+
         } 
         
         // Encrypt Text bubble
         else{
             $(".inputArea").prop("disabled",false);
             // $(".inputArea").prop("readonly",false);
+            $("#textFormArea").attr("placeholder","Enter text to be encrypted")
+
             $("#submitButton").attr('formaction', "/upload")
             $("#promptText").html("Text to Encode")
 
@@ -76,7 +80,6 @@ $('#submitButton').click(function (e) {
         let message = stega.decode(imageUrl)
         $(".inputArea").prop("disabled",false);
         $(".inputArea").prop("readonly",true);
-        // $("#textFormArea").attr("placeholder",message)
         $(".inputArea").val(message) 
         $("#promptText").html("Decoded Text ")
 
