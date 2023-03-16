@@ -1,0 +1,103 @@
+<link rel="stylesheet" type="text/css" href="css/home.css" />
+<div class="row">
+    <div class="col-md-6">
+        <h4 class="main-text" id="promptText">
+            Text to Encode
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
+
+        <form method="post" enctype="multipart/form-data">
+            <textarea id="textFormArea" class="inputArea" name="mytext"
+                style="width: 100%; height:7rem"
+                placeholder="Enter text to be encrypted "></textarea>
+        </form>
+    </div>
+    <div id="main-radio-div" class="col-md-3 col-lg3 col-sm-4 col-xs-12">
+        <form id="radioForm" onsubmit="return encode()">
+            <div class="form-check radio-div">
+                <input class="radio" type="radio" id="encBubble" name="encDec"
+                    value="encrypt" checked>
+                <label for="encBubble">Encrypt</label><br>
+            </div>
+            <div class="form-check radio-div">
+                <input class="radio" type="radio" id="decBubble" name="encDec"
+                    value="decrypt">
+                <label for="decBubble">Decrypt</label><br>
+            </div>
+
+            <div class="radio-div form-check">
+                <input id="submitButton" type="button" value="Submit"
+                    style="font-size:207px">
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 uploadContainer">
+        <span class="dragBox">
+            <span class="dragText">Click or Drag Image to Upload</span>
+            <input class="btn btn-primary" type="file" name="file"
+                id="uploadSubmit" onChange="dragNdrop(event)"
+                ondragover="drag()" ondrop="drop()" />
+        </span>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4 id="firstImageTitle">Uploaded Image</h4>
+    </div>
+    <div class="col-md-6">
+        <h4 id="secondImageTitle">Encrypted Image</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div id="preview"></div>
+    </div>
+    <div class="col-6">
+        <img id="encryptedImage" src="" style="width: 100%;" alt="" />
+    </div>
+</div>
+
+
+
+{{!-- <div class="row">
+    <div class="col-md-6">
+        <h4 id="firstImageTitle">Uploaded Image</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="preview"></div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <h4 id="secondImageTitle">Encrypted Image</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <img id="encryptedImage" src="" style="width: 100%;" alt="" />
+    </div>
+</div> --}}
+
+
+<button class="btn" id="encryptedDownload">
+    <a id="downloadLink" class="fa fa-download" href="javascript:void(0)"
+        download="TotallyNotAnEncryptedFile.png">↧ Download Encrypted
+        Image</a>
+</button>
+
+
+<script src="js/steganography.js"></script>
+
+<script src="js/stegManager.js"></script>

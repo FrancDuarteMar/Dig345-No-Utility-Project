@@ -51,6 +51,7 @@ try {
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
+app.get('/double', handlers.double)
 app.get('/steganography',handlers.steganography)
 app.post("/upload",upload.single("file"),)
 app.post('/upload', upload.single('file'), function (req, res){
