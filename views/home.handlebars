@@ -37,12 +37,12 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-12 uploadContainer">
+    <div class="col-md-12 uploadContainer submittedNo" id = "uploadArea">
         <span class="dragBox">
             <span class="dragText">Click or Drag Image to Upload</span>
             <input class="btn btn-primary" type="file" name="file"
                 id="uploadSubmit" onChange="dragNdrop(event)"
-                ondragover="drag()" ondrop="drop()" />
+                 />
         </span>
 
     </div>
@@ -52,23 +52,15 @@
     <div class="col-md-6">
         <h4 id="firstImageTitle">Uploaded Image</h4>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div id="preview"></div>
-    </div>
-</div>
-
-<br>
-
-<div class="row">
     <div class="col-md-6">
         <h4 id="secondImageTitle">Encrypted Image</h4>
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-12">
+    <div id="previewMain" class="col-12">
+        <div id="preview"></div>
+    </div>
+    <div id="encryptedMain" class="col-12">
         <img id="encryptedImage" src="" style="width: 100%;" alt="" />
     </div>
 </div>

@@ -4,6 +4,46 @@ var canvas = document.getElementById('imageCanvas');
 var imageBlob; 
 var imageUrl;
 
+function setDefaultState(switchOption){
+    $("#uploadArea").removeClass("submittedYes")
+    $("#uploadArea").addClass("submittedNo")
+    
+    $("#firstImageTitle").css("visibility","hidden")
+    $("#secondImageTitle").css("visibility","hidden")
+    $(".uploadContainer").css("display","")
+    $("#encryptedDownload").css("visibility","hidden")
+    $("#downloadLink").attr("href","")
+    $(".inputArea").val("") 
+    
+    $("#previewMain").addClass("col-12")
+    $("#encryptedMain").addClass("col-12")
+    $("#previewMain").removeClass("col-6")
+    $("#encryptedMain").removeClass("col-6")
+
+    $("#image").attr("src", " ");
+    $("#encryptedImage").attr("src"," ");
+
+    // console.log("Switch option function: "+ switchOption)
+    if (switchOption == ("encrypt")){
+        // console.log("Switch ENcrypy ")
+        $(".inputArea").prop("disabled",false);
+        $("#textFormArea").attr("placeholder","Enter text to be encrypted")
+        $("#submitButton").attr('formaction', "/upload")
+        $("#promptText").html("Text to Encode")
+        $(".inputArea").prop("readonly",false);
+
+        
+    }
+    else{
+        // console.log("Switch Decrypt ")
+
+        $(".inputArea").prop("disabled",true);
+        $("#submitButton").attr('formaction', "/decode")
+        $("#promptText").html("Decoding...")
+        $("#textFormArea").attr("placeholder"," ")
+
+    }
+}
 
 function uploadImage(blobFile, text) {
     let form = new FormData(),
@@ -29,16 +69,17 @@ function dragNdrop(event) {
     imageUrl = fileName 
     $("#firstImageTitle").css("visibility","visible")
 }
-function drag() {
-    document.getElementById('uploadFile').parentNode.className = 'draging dragBox';
-}
 
-function drop() {
-    document.getElementById('uploadFile').parentNode.className = 'dragBox';
-}
 
 $('input:radio[name="encDec"]').change(
     function(){
+        // if($("uploadContainer").css("display"))
+        // console.log("Status: "+ $(".uploadContainer").css("display"))
+        if($("#uploadArea").hasClass("submittedYes")){
+            setDefaultState($(this).val())
+        }
+        else{
+
         // Decrypt Text bubble
         if ($(this).val() == 'decrypt'){
             $(".inputArea").prop("disabled",true);
@@ -59,15 +100,26 @@ $('input:radio[name="encDec"]').change(
             $("#promptText").html("Text to Encode")
 
         }
+    }
     });
 
 $('#submitButton').click(function (e) { 
     e.preventDefault();
-    console.log($("#encBubble").is(":checked"))
+    
+    $("#uploadArea").addClass("submittedYes")
+    $("#uploadArea").removeClass("submittedNo")
+    
+    // console.log($("#encBubble").is(":checked"))
     // Encrypt Text to image
     if ($("#encBubble").is(":checked")){
         $(".inputArea").prop("disabled",false);
         $(".inputArea").prop("readonly",true);
+
+        $("#previewMain").removeClass("col-12")
+        $("#encryptedMain").removeClass("col-12")
+        $("#previewMain").addClass("col-6")
+        $("#encryptedMain").addClass("col-6")
+        
 
         let test = stega.encode($(".inputArea").val(), imageUrl)
         $("#encryptedImage").attr("src",test)
@@ -78,6 +130,11 @@ $('#submitButton').click(function (e) {
     } 
     else{
         let message = stega.decode(imageUrl)
+        $("#previewMain").addClass("col-12")
+        $("#encryptedMain").addClass("col-12")
+        $("#previewMain").removeClass("col-6")
+        $("#encryptedMain").removeClass("col-6")
+
         $(".inputArea").prop("disabled",false);
         $(".inputArea").prop("readonly",true);
         $(".inputArea").val(message) 
