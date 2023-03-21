@@ -1,0 +1,13 @@
+#subTitle{
+    color: #c08cff;
+}
+
+a{
+    text-decoration: none;
+    color:#f5c42f;
+
+}
+
+a:hover{
+    color: #c08cff;
+}
